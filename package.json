@@ -1,0 +1,11 @@
+{
+    "name": "nextcloud",
+    "scripts": {
+	"build": "buildah unshare /bin/bash ./install.sh",
+	"up": "podman-compose up",
+	"down": "podman-compose down",
+	"shell": "podman exec -it nextcloud_nextcloud_1 /bin/bash",
+	"clean": "podman rm nextcloud_nextcloud_1 nextcloud_db_1",
+	"clean-vols-really-want-this": "podman volume rm nextcloud_lib_apps nextcloud_lib_data nextcloud_db nextcloud_etc"
+    }
+}

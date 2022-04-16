@@ -1,0 +1,28 @@
+version:  '3'
+services:
+  nextcloud:
+     image: "joequant/nextcloud"
+     ports:
+       - 80:80
+       - 443:443
+     volumes:
+       - lib_apps:/var/lib/nextcloud/data
+       - lib_data:/var/lib/nextcloud/apps
+       - etc:/etc/nextcloud
+     restart: always
+     depends_on:
+       - db
+  db:
+      image: postgres:12-alpine
+      restart: always
+      environment:
+       - POSTGRES_PASSWORD=mypass
+      volumes:
+       - db:/var/lib/postgresql/data
+      restart: always
+
+volumes:
+   lib_apps:
+   lib_data:
+   db:
+   etc:
